@@ -7,8 +7,11 @@
 -->
 <html lang="en">
   {% include head.html %}
-
   <body>
-    <img src='kubus.jpg'>
+    {% include navbar.html %}
+    <div class="content">
+      {{ content }}
+    </div>
+    {% include footer.html %}
   </body>
 </html>

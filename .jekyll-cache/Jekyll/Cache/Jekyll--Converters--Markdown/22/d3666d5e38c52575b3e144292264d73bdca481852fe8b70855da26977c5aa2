@@ -1,4 +1,4 @@
-I"�Z<p>Przyszła środa, a więc czas na pierwszy zbiór przykładów. Zaczniemy najprościej jak to możliwe. Wygenerujemy kilka syntetycznych zbiorów danych, zapisując je później do plików CSV.</p>
+I"9]<p>Przyszła środa, a więc czas na pierwszy zbiór przykładów. Zaczniemy najprościej jak to możliwe. Wygenerujemy kilka syntetycznych zbiorów danych, zapisując je później do plików CSV.</p>
 
 <!--more-->
 
@@ -14,13 +14,13 @@
 
 <p>Dosyć przekonywania, że to przydatne, przejdźmy do przykładu.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="n">make_classification</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nf">make_classification</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>W pierwszej linijce przykładu, z biblioteki <a href="https://scikit-learn.org/stable/">scikit-learn</a> importujemy moduł <a href="https://scikit-learn.org/stable/datasets/index.html">datasets</a>, odpowiadający m.in. za wczytywanie kilku standardowych zbiorów danych (niektóre mają po sto lat, więc przez jakiś czas nie będziemy się nimi raczej przejmować) i właśnie za generowanie zbiorów syntetycznych. Służy do tego funkcja <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html"><code class="language-plaintext highlighter-rouge">make_classification()</code></a>, którą wywołaliśmy na końcu tego krótkiego przykładu. Zwraca ona krotkę <code class="language-plaintext highlighter-rouge">(X, y)</code>, której pierwszy element to – zgodnie z oznaczeniami, które już raczej znamy – <em>zbiór danych</em>, a drugi jest <em>zbiorem etykiet</em>. Podejrzyjmy jakiej wielkości struktury są generowane przez nią domyślnie</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt; (100, 20) (100,)
 </code></pre></div></div>
@@ -31,8 +31,8 @@
 
 <p>Oczywiście, każdy z tych parametrów możemy kontrolować. Przykładowo, wygenerujmy zbiór danych zawierający tysiąc ośmiowymiarowych wzorców.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nf">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt; (1000, 8) (1000,)
 </code></pre></div></div>
@@ -62,7 +62,7 @@
 
 <p>Uzbrojeni w wiedzę o parametrach <code class="language-plaintext highlighter-rouge">make_classification()</code> możemy wymyślić sobie problem. Niech będzie to odtwarzalny (ziarno 1410), dwuwymiarowy zbiór danych, w którym jedynie jeden atrybut będzie informatywny (w drugim znajdzie się szum) i składa się ze stu wzorców o poziomie szumu wynoszącym pięć procent dla problemu binarnego.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="n">make_classification</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nf">make_classification</span><span class="p">(</span>
     <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -76,13 +76,13 @@
 
 <p>Dwuwymiarowy zbiór wygenerowaliśmy po to, żeby móc wygenerować jego <em>scatterplot</em>. Kolejno, importujemy bibliotekę <code class="language-plaintext highlighter-rouge">matplotlib</code>, przygotowujemy pustą ilustrację o wymiarach 5 na 2.5 cala, rysujemy <em>scatterplot</em> (podając osobno kolumny z wymiarami i określając kolor – <code class="language-plaintext highlighter-rouge">c</code> – przez wygenerowane etykiety), opisujemy osi i zapisujemy plik PNG.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">))</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'bwr'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"$x^1$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"$x^2$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'sroda1.png'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">bwr</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">$x^1$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">$x^2$</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">sroda1.png</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="/examples/sroda1.png" alt="" /></p>
@@ -112,15 +112,15 @@
 
 <p>Drugim niezbędnym nam atrybutem funkcji <code class="language-plaintext highlighter-rouge">concatenate()</code> jest <code class="language-plaintext highlighter-rouge">axis</code>, czyli oś, w której planujemy złączyć ze sobą przekazane tablice. Powinniśmy wskazać nim w którym wymiarze (której osi) tablice mają różną wielkość. W naszym wypadku jest to drugi parametr, więc licząc od zera powinniśmy przekazać tam wartość <code class="language-plaintext highlighter-rouge">1</code>. Poprawne złączenie możemy zatem zapisać jak poniżej:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Pojedynczą macierz możemy już bez trudu zapisać w pliku tekstowym o formacie CSV, znów korzystając z metody wbudowanej <code class="language-plaintext highlighter-rouge">numpy</code> <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.savetxt.html"><code class="language-plaintext highlighter-rouge">savetxt()</code></a>.</p>
 
 <p>Ma ona dwa argumenty pozycyjne. W pierwszym podajemy łańcuch z nazwą pliku, w drugim tablicę, którą chcemy zapisać. Dodatkowo, jeśli chcemy spełnić wymagania formatu CSV, powinniśmy również zmienić domyślny separator na przecinek.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"dataset.csv"</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">","</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">savetxt</span><span class="p">(</span><span class="sh">"</span><span class="s">dataset.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="sh">"</span><span class="s">,</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>To niby wystarczy, ale jeśli podejrzymy zawartość pliku, zobaczymy, że nie wygląda najpiękniej.</p>
@@ -134,11 +134,11 @@
 
 <p>Jeśli ktoś jest miłośnikiem notacji naukowej, oczywiście może zostawić to w takiej formie, ale należy szczerze przyznać, że zapis etykiety, która w końcu jest liczbą całkowitą z przepastnego, dyskretnego zbioru zawierającego jedynie zero i jedynkę, jako liczbę w notacji matematycznej z dokładnością do osiemnastu miejsce po przecinku, jest cokolwiek karkołomne. Możemy naprawić to przez ręczne podanie formatu liczb. Nie będę tego dokładnie teraz wyjaśniać, ale proszę uwierzyć, działa.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span>
-    <span class="s">"dataset.csv"</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">savetxt</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">dataset.csv</span><span class="sh">"</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">,</span>
-    <span class="n">delimiter</span><span class="o">=</span><span class="s">","</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="p">[</span><span class="s">"%.5f"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">+</span> <span class="p">[</span><span class="s">"%i"</span><span class="p">],</span>
+    <span class="n">delimiter</span><span class="o">=</span><span class="sh">"</span><span class="s">,</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">%.5f</span><span class="sh">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">+</span> <span class="p">[</span><span class="sh">"</span><span class="s">%i</span><span class="sh">"</span><span class="p">],</span>
 <span class="p">)</span>
 </code></pre></div></div>
 
@@ -155,8 +155,8 @@
 
 <p>No dobrze, to na koniec zobaczmy, jak wczytywać pliki CSV do tablic <code class="language-plaintext highlighter-rouge">numpy</code>. Znów, mamy od tego funkcję wbudowaną, nazywaną <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html"><code class="language-plaintext highlighter-rouge">genfromtxt()</code></a>. Wczytajmy zatem plik do zmiennej <code class="language-plaintext highlighter-rouge">dataset</code> (pamiętając o separatorze) i spójrzmy jak pięknie się wczytał.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s">"dataset.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">","</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">genfromtxt</span><span class="p">(</span><span class="sh">"</span><span class="s">dataset.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="sh">"</span><span class="s">,</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt; [[-1.06089  2.45581  0.     ]
 &gt;&gt;  [-0.68531 -1.50049  0.     ]
@@ -169,7 +169,7 @@
 <p>Skoro już się wczytał, to podzielmy go jeszcze na <code class="language-plaintext highlighter-rouge">X</code> i <code class="language-plaintext highlighter-rouge">y</code>, do pierwszego przypisując wszystkie kolumny poza ostanią, a do drugiego jedynie ostatnią. Skoro etykiety są i tak liczbami całkowitymi, zrzutujmy ją przy okazji na całkowitą.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Pięknie. Potrafimy już zrealizować tak zaawansowane zadania jak wymyślenie problemu i zapisanie go na później, żeby zawsze móc do niego wrócić. Wybornie.</p>
